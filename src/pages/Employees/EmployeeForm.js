@@ -63,7 +63,7 @@ export default function EmployeeForm() {
     return (
         <Form onSubmit={handleSubmit}>
             <Grid container>
-                <Grid item xs={6}>
+                <Grid item xs={12}>
                     <Controls.Input
                         name="fullName"
                         label="Full Name"
@@ -71,6 +71,9 @@ export default function EmployeeForm() {
                         onChange={handleInputChange}
                         error={errors.fullName}
                     />
+                
+                   {
+                       if({values.fullName})
                     <Controls.Input
                         label="Email"
                         name="email"
@@ -78,6 +81,7 @@ export default function EmployeeForm() {
                         onChange={handleInputChange}
                         error={errors.email}
                     />
+                        }
                     <Controls.Input
                         label="Mobile"
                         name="mobile"
@@ -93,7 +97,7 @@ export default function EmployeeForm() {
                     />
 
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12}>
                     <Controls.RadioGroup
                         name="gender"
                         label="Gender"
