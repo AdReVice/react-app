@@ -49,7 +49,8 @@ export default function EmployeeForm() {
         errors,
         setErrors,
         handleInputChange,
-        resetForm
+        resetForm,
+        prevVal
     } = useForm(initialFValues, true, validate);
 
     const handleSubmit = e => {
@@ -71,9 +72,7 @@ export default function EmployeeForm() {
                         onChange={handleInputChange}
                         error={errors.fullName}
                     />
-                
-                   {
-                       if({values.fullName})
+                    { values.fullName === "Yamaha MT19" && 
                     <Controls.Input
                         label="Email"
                         name="email"
@@ -81,7 +80,8 @@ export default function EmployeeForm() {
                         onChange={handleInputChange}
                         error={errors.email}
                     />
-                        }
+                    }
+                    { values.email === "YMSLI@G.com" && 
                     <Controls.Input
                         label="Mobile"
                         name="mobile"
@@ -89,13 +89,15 @@ export default function EmployeeForm() {
                         onChange={handleInputChange}
                         error={errors.mobile}
                     />
+                    }
+                    { values.mobile === "9999999999" && 
                     <Controls.Input
                         label="City"
                         name="city"
                         value={values.city}
                         onChange={handleInputChange}
                     />
-
+                    }
                 </Grid>
                 <Grid item xs={12}>
                     <Controls.RadioGroup

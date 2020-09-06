@@ -22,7 +22,8 @@ export default function Employees() {
         <
         PageHeader title = "New Employee"
         subTitle = "Submit Your Medical Details"
-        icon = { <
+        icon = {
+            <
             PeopleOutlineTwoToneIcon fontSize = "large" / >
         }
         /> <
