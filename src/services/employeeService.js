@@ -4,9 +4,9 @@ const KEYS ={
 }
 
 export const getDepartmentCollection = ()=>([
-    { id: '1', title: 'Development' },
-    { id: '2', title: 'Marketing' },
-    { id: '3', title: 'Accounting' },
+    { id: '1', title: 'YNA_APPS' },
+    { id: '2', title: 'INFRA' },
+    { id: '3', title: 'OPEN SOURCE' },
     { id: '4', title: 'HR' },
 ])
 

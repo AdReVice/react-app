@@ -3,8 +3,8 @@ import { Grid, } from '@material-ui/core';
 import Controls from "../../components/controls/Controls";
 import { useForm, Form } from '../../components/useForm';
 import * as employeeService from "../../services/employeeService";
-
-
+import * as postMethods from '../../components/routers/formSubmitRouter'
+import * as contants from '../../components/constants/AppConstants'
 const genderItems = [
     { id: 'male', title: 'Male' },
     { id: 'female', title: 'Female' },
@@ -57,6 +57,8 @@ export default function EmployeeForm() {
         e.preventDefault()
         if (validate()){
             employeeService.insertEmployee(values)
+            console.log(values)
+            postMethods.componentDidMount(values)
             resetForm()
         }
     }
@@ -65,14 +67,15 @@ export default function EmployeeForm() {
         <Form onSubmit={handleSubmit}>
             <Grid container>
                 <Grid item xs={12}>
+                    {/* <label className="field-name" />Name:<br/> */}
                     <Controls.Input
                         name="fullName"
-                        label="Full Name"
+                        label={contants.FORM_NAME1}
                         value={values.fullName}
                         onChange={handleInputChange}
                         error={errors.fullName}
                     />
-                    { values.fullName === "Yamaha MT19" && 
+                    { values.fullName === contants.VALUE1  && 
                     <Controls.Input
                         label="Email"
                         name="email"
