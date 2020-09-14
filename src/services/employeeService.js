@@ -11,6 +11,7 @@ export const getDepartmentCollection = ()=>([
 ])
 
 export function insertEmployee(data) {
+    console.log(data);
     let employees=getAllEmployees();
     data['id'] = generateEmployeeId()
     employees.push(data)

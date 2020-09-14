@@ -8,14 +8,27 @@ export function useForm(initialFValues, validateOnChange = false, validate) {
     const [errors, setErrors] = useState({});
 
     const handleInputChange = e => {
+
         const { name, value } = e.target
+        console.log(values)
         setValues({
             ...values,
             [name]: value
         })
-        if (validateOnChange)
+        
+        console.log(values)
+        if (validateOnChange){
+            console.log(name)
             validate({ [name]: value })
+        }
     }
+
+    // // handle click event of the Add button
+    // const handleAddClick = e => {
+    //     console.log(e)
+    //     const { name, value } = e.target,
+    //     setValues({...values, name: value});
+    // };
 
     const resetForm = () => {
         setValues(initialFValues);
@@ -31,6 +44,7 @@ export function useForm(initialFValues, validateOnChange = false, validate) {
         setErrors,
         handleInputChange,
         resetForm
+        //handleAddClick
 
     }
 }
