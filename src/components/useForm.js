@@ -10,12 +10,17 @@ export function useForm(initialFValues, validateOnChange = false, validate) {
     const handleInputChange = e => {
 
         const { name, value } = e.target
-        console.log(values)
+        // setValues(prevState => {
+        //     prevState.values[name] =  value;
+        //     return {
+        //         values: prevState.values
+        //     };
+        // });
         setValues({
             ...values,
             [name]: value
         })
-        
+        console.log(values)
         console.log(values)
         if (validateOnChange){
             console.log(name)

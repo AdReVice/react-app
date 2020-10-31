@@ -5,6 +5,7 @@ import { useForm, Form } from '../../components/useForm';
 import * as employeeService from "../../services/employeeService";
 import * as postMethods from '../../components/routers/formSubmitRouter'
 import * as contants from '../../components/constants/AppConstants'
+import EmployeeList from '../../components/routers/questionJson'
 const genderItems = [
     { id: 'male', title: 'Male' },
     { id: 'female', title: 'Female' },
@@ -46,7 +47,7 @@ export default function EmployeeForm() {
         if (fieldValues == values)
             return Object.values(temp).every(x => x == "")
     }
-
+    const { employeeData } = EmployeeList;
     const {
         values,
         setValues,
@@ -71,71 +72,38 @@ export default function EmployeeForm() {
         <Form onSubmit={handleSubmit}>
             <Grid container>
                 <Grid item xs={12}>
-                    {/* <label className="field-name" />Name:<br/> */}
-                    <Controls.Input
-                        name="fullName"
-                        label={contants.FORM_NAME1}
-                        value={values.fullName}
-                        onChange={handleInputChange}
-                        error={errors.fullName}
-                    />
-                    { values.fullName === contants.VALUE1  && 
-                    <Controls.Input
-                        label="Email"
-                        name="email"
-                        value={values.email}
-                        onChange={handleInputChange}
-                        error={errors.email}
-                    />
-                    }
-                    { values.email === "YMSLI@G.com" && 
-                    <Controls.Input
-                        label="Mobile"
-                        name="mobile"
-                        value={values.mobile}
-                        onChange={handleInputChange}
-                        error={errors.mobile}
-                    />
-                    }
-                    { values.mobile === "9999999999" && 
-                    <Controls.Input
-                        label="City"
-                        name="city"
-                        value={values.city}
-                        onChange={handleInputChange}
-                    />
-                    }
+                {   console.log(employeeData) && 
+                    EmployeeList.data.questionMstRespDtlList.map(function(item, index) {
+                            switch(item.answerType) {
+                            case "10":
+                                return <Controls.Input
+                                        label={item.questionLabel}
+                                        name={item.questionCode}
+                                        onChange={handleInputChange}
+                                        // error={errors.item.questionCode}
+                                    />
+                            case "20":
+                                return <Controls.Select
+                                        label={item.questionLabel}
+                                        name={item.questionCode}
+                                        onChange={handleInputChange}
+                                        options={item.possibleAnswerValues}
+                                       // error={errors.item.questionCode}
+                                    />
+                            case "30":
+                                return <Controls.RadioGroup
+                                        label={item.questionLabel}
+                                        name={item.questionCode}
+                                        onChange={handleInputChange}
+                                        items={item.possibleAnswerValues}
+                                        // error={errors.item.questionCode}
+                                    />
+                            }
+                        })
+                }
                 </Grid>
-                <Grid item xs={12}>
-                    <Controls.RadioGroup
-                        name="gender"
-                        label="Gender"
-                        value={values.gender}
-                        onChange={handleInputChange}
-                        items={genderItems}
-                    />
-                    <Controls.Select
-                        name="departmentId"
-                        label="Department"
-                        value={values.departmentId}
-                        onChange={handleInputChange}
-                        options={employeeService.getDepartmentCollection()}
-                        error={errors.departmentId}
-                    />
-                    <Controls.DatePicker
-                        name="hireDate"
-                        label="Hire Date"
-                        value={values.hireDate}
-                        onChange={handleInputChange}
-                    />
-                    <Controls.Checkbox
-                        name="isPermanent"
-                        label="Permanent Employee"
-                        value={values.isPermanent}
-                        onChange={handleInputChange}
-                    />
-
-                    <div>
+                <Grid>
+                { <div>
                         <Controls.Button
                             type="submit"
                             text="Submit" />
@@ -144,6 +112,7 @@ export default function EmployeeForm() {
                             color="default"
                             onClick={resetForm} />
                     </div>
+                    }
                 </Grid>
             </Grid>
         </Form>

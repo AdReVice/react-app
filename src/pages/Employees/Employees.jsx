@@ -6,6 +6,8 @@ import {
     Paper,
     makeStyles
 } from '@material-ui/core';
+import ReactForm from './ReactForm';
+import Login from './ReactForm';
 
 const useStyles = makeStyles(theme => ({
     pageContent: {
